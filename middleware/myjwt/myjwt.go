@@ -44,6 +44,19 @@ func NeedJwtAuth() gin.HandlerFunc {
 		c.Set("claims", claims)
 	}
 }
+func NoNeedJWTAuth() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		token := c.Request.Header.Get("token")
+		if token != "" {
+			j := NewJWT()
+			// parseToken 解析token包含的信息
+			claims, err := j.ParseToken(token)
+			if err == nil {
+				c.Set("claims", claims)
+			}
+		}
+	}
+}
 
 // 生成令牌
 func GenerateToken(c *gin.Context, user models.User) string {

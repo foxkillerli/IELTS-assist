@@ -1,6 +1,9 @@
 package main
 
 import (
+	"flag"
+	"fmt"
+	"github.com/foxkillerli/IELTS-assist/config"
 	"github.com/foxkillerli/IELTS-assist/route"
 	gin "github.com/gin-gonic/gin"
 	"log"
@@ -8,6 +11,11 @@ import (
 )
 
 func main() {
+	var token string
+	flag.StringVar(&token, "token", "", "openai token")
+	flag.Parse()
+	fmt.Printf("token: %s\n", token)
+	config.OPENAI_TOKEN = token
 	mux := http.NewServeMux()
 	r := route.SetupRouter()
 	r.Any("/admin/*resources", gin.WrapH(mux))

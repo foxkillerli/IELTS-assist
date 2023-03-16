@@ -13,13 +13,13 @@ func SetupRouter() *gin.Engine {
 	r.Use(gin.Recovery())
 	r.POST("/api/v1/user/register", controllers.UserRegister)
 	r.POST("/api/v1/user/login", controllers.UserLogin)
-	v1NeedAuth := r.Group("/api/v1")
-	v1NeedAuth.Use(jwt.NeedJwtAuth())
+	v1NoNeedAuth := r.Group("/api/v1")
+	v1NoNeedAuth.Use(jwt.NoNeedJWTAuth())
 	{
-		v1NeedAuth.POST("article/edit", controllers.ArticleEdit)
-		v1NeedAuth.POST("oral/chat", controllers.OralChat)
+		v1NoNeedAuth.POST("article/edit", controllers.ArticleEdit)
+		v1NoNeedAuth.POST("article/suggestion", controllers.ArticleEditionSuggestion)
+		v1NoNeedAuth.POST("oral/chat", controllers.OralChat)
 	}
-
 	return r
 }
 

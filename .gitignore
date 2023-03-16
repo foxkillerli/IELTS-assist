@@ -16,3 +16,6 @@
 
 # idea configuration folder
 .idea/
+
+# vim temp files
+*.md.un~
