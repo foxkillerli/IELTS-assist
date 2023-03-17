@@ -7,9 +7,6 @@ import (
 	"net/http"
 )
 
-// PostArticleEdit
-// 1. Get Article from gin's context
-// 2. Get aiming IELTS band from gin's context
 func ArticleEdit(c *gin.Context) {
 	var postArticle request.PostArticleEdit
 	if err := c.BindJSON(&postArticle); err != nil {

@@ -50,8 +50,8 @@ func ArticleEditSuggestion(article string, band int) string {
 					Role: openai.ChatMessageRoleSystem,
 					Content: "You are an IELTS test studying assistant, " +
 						"the user would upload an article, " +
-						"and you should rate the article and make study suggestions" +
-						"with IELTS' band-" + strconv.Itoa(band) + " standard in Mandarin.",
+						"and you should rate the article in details" +
+						"with IELTS' band-" + strconv.Itoa(band) + " standard.",
 				},
 				{
 					Role:    openai.ChatMessageRoleUser,
